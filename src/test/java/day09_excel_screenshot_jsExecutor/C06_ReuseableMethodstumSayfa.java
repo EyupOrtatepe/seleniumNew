@@ -17,14 +17,24 @@ public class C06_ReuseableMethodstumSayfa extends TestBase {
 
         // amazon anasayfaya gidin
         driver.get("https://www.amazon.com");
+
         // Nutella icin arama yapin
         WebElement aramaKutusu= driver.findElement(By.id("twotabsearchtextbox"));
         aramaKutusu.sendKeys("Nutella" + Keys.ENTER);
+
         // Sonuclarin Nutella icerdigini test edin
-        WebElement sonucYaziElementi= driver.findElement(By.xpath("//h1[@class='a-size-base s-desktop-toolbar a-text-normal']"));
-        String actualSonucYazisi =sonucYaziElementi.getText();
+
+        String actualSonucYazisi = driver.findElement(By.xpath("//h1[@class='a-size-base s-desktop-toolbar a-text-normal']"))
+                .getText();
+
         String expectedIcerik = "Nutella";
+
         Assert.assertTrue(actualSonucYazisi.contains(expectedIcerik));
 
-        ReuseableMethods.tumSayfaSS(driver);
-}}
+        // ve rapora eklenmek icin tum sayfanin fotografini cekin
+
+        ReuseableMethods.tumSayfaScreenshot(driver);
+
+    }
+
+}
